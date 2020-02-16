@@ -51,10 +51,21 @@
                 <button>Submit</button>
             </form>
         </section>
-        <section class="showResults" id="showResults">
+        <section class="showCalorieResults" id="showCalorieResults">
             <h2 id="totalCaloriesPerDay"></h2>
             <h3 id="avgCaloriesPerMeal"></h3>
-
+        </section>
+        <section id="recipeSection" class="recipeSection">
+            <form action="" id="getRecipes" class="getRecipes">
+                <select name="mealType" id="mealType">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                </select>
+                <button>Get Recipes</button>
+            </form>
+            <ul id="listOfRecipes" class="listOfRecipes"></ul>
         </section>
     </main>
 

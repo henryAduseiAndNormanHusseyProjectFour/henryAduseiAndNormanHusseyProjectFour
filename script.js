@@ -1,10 +1,50 @@
 const app = {};
+app.apiId = '9267f4f5';
+app.apiKey = 'f5989c4d0fce10c4ab403955d5b8f21f';
 
-app.getRecipes = function () {
-
+app.displayRecipes = function () {
+    for (let i = 0; i < app.recipeResults.length; i++) {
+        const recipe = app.recipeResults[i].recipe;
+        const htmlToAppend = `
+            <li>
+                <img src="${recipe.image}">
+                <h4>${recipe.label}</h4>
+                <p>Calories per serving: ${Math.round(recipe.calories / recipe.yield)}</p>
+                <p>Fat: ${recipe.digest[0].total.toFixed(2)}${recipe.digest[0].unit}</p>
+                <p>Carbohydrates: ${recipe.digest[1].total.toFixed(2)}${recipe.digest[1].unit}</p>
+                <p>Protein: ${recipe.digest[2].total.toFixed(2)}${recipe.digest[2].unit}</p>
+                <p class="healthLabels">${recipe.healthLabels.join(', ')}</p>
+                <p class="cautions">Cautions: ${recipe.cautions.join(', ')}</p>
+                <a href="${recipe.url}" target="_blank">Click here to see recipe</a>
+            </li>
+        `;
+        app.$listOfRecipes.append(htmlToAppend);
+    }
 };
 
-app.showResults = function () {
+app.getRecipes = function () {
+    $.ajax({
+        url: `https://api.edamam.com/search`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            "app_id": app.apiId,
+            "app_key": app.apiKey,
+            q: app.mealType,
+            calories: app.caloriesPerMeal,
+            // health: 'peanut-free',
+            // cuisineType: 'indian'
+            // mealType: 'snack'
+        }
+
+    }).then(function (response) {
+        console.log(response.hits);
+        app.recipeResults = response.hits;
+        app.displayRecipes();
+    });
+};
+
+app.showCalorieResults = function () {
     app.$totalCaloriesPerDay.text(`Your total daily calories are: ${app.totalCaloriesPerDay}`);
     app.$avgCaloriesPerMeal.text(`Your average calories per meal are: ${app.caloriesPerMeal}`);
 };
@@ -23,22 +63,21 @@ app.getBMR = function () {
     } else if (app.gender === 'female') {
         app.BMR = app.getFemaleBMR() * app.activityLevel;
     }
-    // console.log("BMR:", app.BMR);
     app.calculateTotalCaloriesPerDay();
 };
 
 app.calculateTotalCaloriesPerDay = function () {
     app.totalCaloriesPerDay = Math.round(app.BMR + (app.weightGoals * app.weightPoundsPerWeek));
     app.caloriesPerMeal = Math.round(app.totalCaloriesPerDay / app.numberOfMealsPerDay);
-    // console.log("Total per day", app.totalCaloriesPerDay);
-    // console.log("Calories per meal:", app.caloriesPerMeal);
-    app.showResults();
+    app.showCalorieResults();
 };
 
 app.cacheSelectors = function () {
     app.$inputForm =  $('#inputForm');
     app.$totalCaloriesPerDay = $('#totalCaloriesPerDay');
     app.$avgCaloriesPerMeal = $('#avgCaloriesPerMeal');
+    app.$getRecipes = $('#getRecipes');
+    app.$listOfRecipes = $('#listOfRecipes');
 };
 
 app.addEventListeners = function () {
@@ -54,6 +93,13 @@ app.addEventListeners = function () {
         app.numberOfMealsPerDay = parseInt($('#numberOfMealsPerDay').val());
         app.getBMR();
     });
+
+    app.$getRecipes.on('submit', function (e) {
+        e.preventDefault();
+        app.mealType = $('#mealType').val();
+        app.getRecipes();
+    });
+
 };
 
 app.init = function () {
