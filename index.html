@@ -31,8 +31,30 @@
                     <option value="1.725">Very Active (hard exercise/sports 6-7 days a week)</option>
                     <option value="1.9">Extra Active (very hard exercise/sports & physical job or 2x training)</option>
                 </select>
+                <fieldset>
+                    <legend>I am looking to...</legend>
+                    <label for="loseWeight">Lose Weight</label>
+                    <input type="radio" name="weightGoals" id="loseWeight" value="-1">
+                    <label for="maintainWeight">Maintain Weight</label>
+                    <input type="radio" name="weightGoals" id="maintainWeight" value="0">
+                    <label for="gainWeight">Gain Weight</label>
+                    <input type="radio" name="weightGoals" id="gainWeight" value="1">
+                    <select name="weightPoundsPerWeek" id="weightPoundsPerWeek" class="weightPoundsPerWeek">
+                        <option value="250">0.5 pounds per week</option>
+                        <option value="500">1.0 pounds per week</option>
+                        <option value="750">1.5 pounds per week</option>
+                        <option value="1000">2.0 pounds per week</option>
+                    </select>
+                </fieldset>
+                <label for="numberOfMealsPerDay">How many meals per day?</label>
+                <input type="number" name="numberOfMealsPerDay" id="numberOfMealsPerDay" min="3">
                 <button>Submit</button>
             </form>
+        </section>
+        <section class="showResults" id="showResults">
+            <h2 id="totalCaloriesPerDay"></h2>
+            <h3 id="avgCaloriesPerMeal"></h3>
+
         </section>
     </main>
 
