@@ -3,6 +3,7 @@ app.apiId = '9267f4f5';
 app.apiKey = 'f5989c4d0fce10c4ab403955d5b8f21f';
 
 app.displayRecipes = function () {
+    app.$listOfRecipes.empty();
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
         const htmlToAppend = `
@@ -10,6 +11,7 @@ app.displayRecipes = function () {
                 <img src="${recipe.image}">
                 <h4>${recipe.label}</h4>
                 <p>Calories per serving: ${Math.round(recipe.calories / recipe.yield)}</p>
+                <p>${recipe.dietLabels.join(', ')}</p>
                 <p>Fat: ${recipe.digest[0].total.toFixed(2)}${recipe.digest[0].unit}</p>
                 <p>Carbohydrates: ${recipe.digest[1].total.toFixed(2)}${recipe.digest[1].unit}</p>
                 <p>Protein: ${recipe.digest[2].total.toFixed(2)}${recipe.digest[2].unit}</p>
@@ -24,18 +26,20 @@ app.displayRecipes = function () {
 
 app.getRecipes = function () {
     $.ajax({
-        url: `https://api.edamam.com/search`,
+        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}&excluded=rolls&excluded=breakfast&health=alcohol-free&health=peanut-free`,
         method: 'GET',
         dataType: 'json',
-        data: {
-            "app_id": app.apiId,
-            "app_key": app.apiKey,
-            q: app.mealType,
-            calories: app.caloriesPerMeal,
-            // health: 'peanut-free',
-            // cuisineType: 'indian'
-            // mealType: 'snack'
-        }
+        // data: {
+        //     "app_id": app.apiId,
+        //     "app_key": app.apiKey,
+        //     q: app.mealType,
+        //     calories: `${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}`,
+        //     diet: app.dietType,
+        //     // excluded: 'rolls&breakfast&lunch&snack&alcohol',
+        //     health: `alcohol-free&health=peanut-free'`,
+        //     // mealType: 'lunch',
+        //     // cuisineType: 'indian'
+        // }
 
     }).then(function (response) {
         console.log(response.hits);
@@ -97,6 +101,7 @@ app.addEventListeners = function () {
     app.$getRecipes.on('submit', function (e) {
         e.preventDefault();
         app.mealType = $('#mealType').val();
+        app.dietType = $('#dietType').val();
         app.getRecipes();
     });
 
