@@ -9,11 +9,14 @@ app.reset = function() {
     },
     750
 );
+
+setTimeout(function() {
     app.$inputForm[0].reset();
     app.$listOfRecipes.empty();
     app.$displayRecipesSection.toggleClass("hidden");
     app.$showCalorieResults.toggleClass("hidden");
     app.$recipeSection.toggleClass("hidden");
+},750);
 }
 
 app.displayRecipes = function () {
@@ -82,7 +85,7 @@ app.getExcluded = function() {
 
 app.getRecipes = function () {
     $.ajax({
-        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free`,
+        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free&diet=${app.dietType}`,
         method: 'GET',
         dataType: 'json',
         // data: {

@@ -214,6 +214,8 @@ h4 {
 }
 
 
+
+
 .recipeSection {
     padding: 5%;
 }
@@ -291,6 +293,26 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.dietaryPreferences {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 60%;
+}
+
+.dietaryPreferences div {
+    margin: 3%;
+}
+
+.dietaryPreferences label {
+    font-size: 1.5vmax;
+}
+
+.dietaryPreferences legend, .getRecipes label {
+    font-size: 1.75vmax;
 }
 
 .hidden {

@@ -97,6 +97,7 @@
                         <option value="dinner">Dinner</option>
                         <option value="snack">Snack</option>
                     </select>
+
                     <label for="dietType">Choose your dietary preference</label>
                     <select name="dietType" id="dietType">
                         <option value="balanced">Balanced</option>
@@ -106,6 +107,40 @@
                         <option value="low-carb">Low-Carb</option>
                         <option value="low-sodium">Low-Sodium</option>
                     </select>
+
+                    <fieldset class="dietaryPreferences">
+                        <legend for="dietType">Choose your dietary preference</legend>
+
+                        <div>
+                            <label for="dairyFree">Dairy-free</label>
+                            <input type="checkbox" id="dairyFree" value="dairy-free" checked>
+                        </div>
+
+                        <div>
+                            <label for="glutenFree">Gluten-free</label>
+                            <input type="checkbox" id="glutenFree" value="gluten-free">
+                        </div>
+
+                        <div>
+                            <label for="peanutFree">Peanut-free</label>
+                            <input type="checkbox" id="peanutFree" value="peanut-free">
+                        </div>
+
+                        <div>
+                            <label for="vegan">Vegan</label>
+                            <input type="checkbox" id="vegan" value="vegan">
+                        </div>
+                        <div>
+                            <label for="vegetarian">Vegetarian</label>
+                            <input type="checkbox" id="vegetarian" value="vegetarian">
+                        </div>
+
+                        <div>
+                            <label for="soyFree">Soy-free</label>
+                            <input type="checkbox" id="soyFree" value="soy-free">
+                        </div>
+
+                    </fieldset>
                     <button>Get Recipes</button>
                 </form>
             </div>
