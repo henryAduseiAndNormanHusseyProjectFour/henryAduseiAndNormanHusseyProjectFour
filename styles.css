@@ -159,3 +159,41 @@ button:active {
     box-shadow: none;
 }
 
+.showCalorieResults {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: all .3s;
+}
+
+
+
+
+h2 {
+    font-size: 3.5vmax;
+}
+
+h2 span, h3 span {
+    font-size: 4.5vmax;
+    color: var(--colourSecondaryDark);
+    display: block;
+    width: 100%;
+    text-align: center;
+   
+
+}
+
+h3 {
+    font-size: 3vmax;
+}
+
+h3 span {
+    
+}
+
+
+.hidden {
+    opacity: 0;
+}

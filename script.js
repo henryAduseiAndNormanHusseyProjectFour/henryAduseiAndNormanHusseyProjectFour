@@ -49,8 +49,9 @@ app.getRecipes = function () {
 };
 
 app.showCalorieResults = function () {
-    app.$totalCaloriesPerDay.text(`Your total daily calories are: ${app.totalCaloriesPerDay}`);
-    app.$avgCaloriesPerMeal.text(`Your average calories per meal are: ${app.caloriesPerMeal}`);
+    app.$showCalorieResults.toggleClass('hidden');
+    app.$totalCaloriesPerDay.text(app.totalCaloriesPerDay);
+    app.$avgCaloriesPerMeal.text(app.caloriesPerMeal);
 };
 
 app.getMaleBMR = function () {
@@ -82,6 +83,7 @@ app.cacheSelectors = function () {
     app.$avgCaloriesPerMeal = $('#avgCaloriesPerMeal');
     app.$getRecipes = $('#getRecipes');
     app.$listOfRecipes = $('#listOfRecipes');
+    app.$showCalorieResults = $('#showCalorieResults');
 };
 
 app.addEventListeners = function () {
