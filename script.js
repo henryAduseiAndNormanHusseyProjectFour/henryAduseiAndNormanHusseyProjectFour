@@ -2,7 +2,22 @@ const app = {};
 app.apiId = '9267f4f5';
 app.apiKey = 'f5989c4d0fce10c4ab403955d5b8f21f';
 
+app.reset = function() {
+    app.$htmlBody.animate(
+{
+    scrollTop: $('#home').offset().top
+    },
+    750
+);
+    app.$inputForm[0].reset();
+    app.$listOfRecipes.empty();
+    app.$displayRecipesSection.toggleClass("hidden");
+    app.$showCalorieResults.toggleClass("hidden");
+    app.$recipeSection.toggleClass("hidden");
+}
+
 app.displayRecipes = function () {
+    app.$displayRecipesSection.toggleClass('hidden');
     app.$listOfRecipes.empty();
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
@@ -39,7 +54,14 @@ app.displayRecipes = function () {
 
         `;
         app.$listOfRecipes.append(htmlToAppend);
+
     }
+        app.$htmlBody.animate(
+        {
+            scrollTop: app.$displayRecipesSection.offset().top
+        },
+        750
+    );
 };
 
 app.getRecipes = function () {
@@ -73,7 +95,7 @@ app.showCalorieResults = function () {
     app.$avgCaloriesPerMeal.text(app.caloriesPerMeal);
     app.$htmlBody.animate({
         scrollTop: app.$showCalorieResults.offset().top
-    },750)
+    },750);
 };
 
 app.getMaleBMR = function () {
@@ -109,16 +131,34 @@ app.cacheSelectors = function () {
     app.$showCalorieResults = $('#showCalorieResults');
     app.$recipeSection = $('#recipeSection');
     app.$htmlBody = $('html, body');
+    app.$displayRecipesSection = $('.displayRecipesSection');
+    app.$startAgain = $('#startAgain');
+    app.$age = $('#age');
+    app.$weight = $('#weight');
+    app.$height = $('#height');
+    app.$activityLevel = $('#activityLevel');
+    app.$startJourney = $('#startJourney');
+    app.$inputSection = $('.inputSection');
+
 };
 
 app.addEventListeners = function () {
+    app.$startJourney.on('click', function () {
+        app.$htmlBody.animate(
+            {
+            scrollTop: app.$inputSection.offset().top
+            },
+            300
+        );
+    });
+
    app.$inputForm.on('submit', function (e) {
         e.preventDefault();
         app.gender = $('input[name="gender"]:checked').val();
-        app.age = parseInt($('#age').val());
-        app.weight = parseInt($('#weight').val());
-        app.height = parseInt($('#height').val());
-        app.activityLevel = $('#activityLevel').val();
+        app.age = parseInt(app.$age.val());
+        app.weight = parseInt(app.$weight.val());
+        app.height = parseInt(app.$height.val());
+        app.activityLevel = (app.$activityLevel.val());
         app.weightGoals = $('input[name="weightGoals"]:checked').val();
         app.weightPoundsPerWeek = $('#weightPoundsPerWeek').val();
         app.numberOfMealsPerDay = parseInt($('#numberOfMealsPerDay').val());
@@ -131,6 +171,12 @@ app.addEventListeners = function () {
         app.dietType = $('#dietType').val();
         app.getRecipes();
     });
+
+    app.$startAgain.on('click', function () {
+        app.reset();
+    });
+
+
 
 };
 

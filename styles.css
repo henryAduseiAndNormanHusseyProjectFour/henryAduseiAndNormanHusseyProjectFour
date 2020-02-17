@@ -85,10 +85,10 @@ header p {
     font-size: 1.5vmax;
 }
 
-.inputForm {
-    margin: 5%;
+.inputSection {
+    padding: 5%;
 }
-.inputForm form {
+.inputSection form {
     font-size: 1.5vmax;
     display: flex;
     flex-direction: column;
@@ -282,6 +282,16 @@ li {
     
 }
 
+.displayRecipesSection button {
+    margin: 2% 0;
+}
+
+.displayRecipesSection .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .hidden {
     opacity: 0;

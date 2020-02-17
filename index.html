@@ -9,17 +9,17 @@
     <title>FitBite App</title>
 </head>
 <body>
-    <header>
+    <header id="home">
         <div class="wrapper">    
             <h1>FitBite</h1>
             <p>Find out some cool recipes based on your daily calorie needs.</p>
     
-           <a class="anchors" href="#inputForm">start your journey</a>
+           <button class="anchors" id="startJourney">start your journey</button>
         </div>
     </header>
 
     <main>
-        <section class="inputForm">
+        <section class="inputSection">
             <div class="wrapper">
                 <form action="" id="inputForm">
                     <div class="genderSelect">
@@ -111,15 +111,15 @@
             </div>
         </section>
         
-        <section class="listOfRecipes">
+        <section class="displayRecipesSection hidden">
             <div class="wrapper">
                 <ul id="listOfRecipes"></ul>
+                <button id="startAgain">Start Again</button>
             </div>
         </section>
     </main>
 
     <footer>
-
     </footer>
 
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
