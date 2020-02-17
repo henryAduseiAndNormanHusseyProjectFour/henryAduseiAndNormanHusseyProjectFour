@@ -8,17 +8,35 @@ app.displayRecipes = function () {
         const recipe = app.recipeResults[i].recipe;
         const htmlToAppend = `
             <li>
-                <img src="${recipe.image}">
-                <h4>${recipe.label}</h4>
-                <p>Calories per serving: ${Math.round(recipe.calories / recipe.yield)}</p>
-                <p>${recipe.dietLabels.join(', ')}</p>
-                <p>Fat: ${recipe.digest[0].total.toFixed(2)}${recipe.digest[0].unit}</p>
-                <p>Carbohydrates: ${recipe.digest[1].total.toFixed(2)}${recipe.digest[1].unit}</p>
-                <p>Protein: ${recipe.digest[2].total.toFixed(2)}${recipe.digest[2].unit}</p>
-                <p class="healthLabels">${recipe.healthLabels.join(', ')}</p>
-                <p class="cautions">Cautions: ${recipe.cautions.join(', ')}</p>
-                <a href="${recipe.url}" target="_blank">Click here to see recipe</a>
+                <div class="recipeImage">
+                    <img src="${recipe.image}">
+                </div>
+
+                <div class="recipeDetails">
+                    <h4>${recipe.label}</h4>
+                    <p>Calories per serving: ${Math.round(
+                      recipe.calories / recipe.yield
+                    )}</p>
+                    <p>${recipe.dietLabels.join(", ")}</p>
+                    <p>Fat: ${recipe.digest[0].total.toFixed(2)}${
+                    recipe.digest[0].unit
+                    } Carbs: ${recipe.digest[1].total.toFixed(2)}${
+                    recipe.digest[1].unit
+                    } Protein: ${recipe.digest[2].total.toFixed(2)}${
+                    recipe.digest[2].unit
+                    }</p>
+                    <p class="healthLabels">${recipe.healthLabels.join(
+                      ", "
+                    )}</p>
+                    <p class="cautions">Cautions: ${recipe.cautions.join(
+                      ", "
+                    )}</p>
+                    <a class="anchors" href="${
+                      recipe.url
+                    }" target="_blank">Click here to see recipe</a>
+                </div>
             </li>
+
         `;
         app.$listOfRecipes.append(htmlToAppend);
     }

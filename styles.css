@@ -62,17 +62,23 @@ h1 {
     text-shadow: 2px 2px 2px black;
 }
 
-.getStarted {
+.anchors {
     padding: 20px;
     font-size: 2vmax;
     border: none;
     background-color: var(--colourSecondaryDark);
     color: var(--colourWhiteShade);
     border-radius: 12px;
+    box-shadow: 2px 2px black;
+    transition: all .3s;
 }
 
-.getStarted:hover, .getStarted:focus {
-    background-color: var(--colourSecondaryLight);
+.anchors:active {
+    box-shadow: none;
+}
+
+.anchors:hover, .anchors:focus {
+    background-color: var(--colourPrimaryDark);
 }
 
 header p {
@@ -195,6 +201,9 @@ h3 {
     font-size: 3vmax;
 }
 
+h4 {
+    font-size: 2.5vmax;
+}
 
 
 .getRecipes {
@@ -218,12 +227,64 @@ h3 {
     width: 25vw;
 }
 
-.hidden {
-    opacity: 0;
-    display: none;
+
+ul  {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
 }
 
 li {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 48%;
+    margin: 2% 0;
+
+}
+
+
+.recipeImage img {
+    width: 100%;
+    height: auto;
+}
+
+
+.recipeDetails {
+    padding: 5%;
+}
+
+.recipeDetails p {
+    font-size: 1.25vmax;
+}
+
+.cautions {
+    color: var(--colourSecondaryDark);
+    font-weight: 700;
+}
+
+.healthLabels {
+    color: var(--colourPrimaryDark);
+    font-weight: 700;
+}
+
+.recipeDetails .anchors {
+    font-size: 1.25vmax;
+    padding: 10px;
+    margin: 2% 0;
+    display: inline-block;
+}
+
+.recipeDetailsa a:hover, .recipeDetails a:focus {
+    
+}
+
+
+.hidden {
+    opacity: 0;
+    display: none;
 }
 
