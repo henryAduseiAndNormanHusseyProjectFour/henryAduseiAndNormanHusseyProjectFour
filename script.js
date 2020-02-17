@@ -50,8 +50,12 @@ app.getRecipes = function () {
 
 app.showCalorieResults = function () {
     app.$showCalorieResults.toggleClass('hidden');
+    app.$recipeSection.toggleClass('hidden');
     app.$totalCaloriesPerDay.text(app.totalCaloriesPerDay);
     app.$avgCaloriesPerMeal.text(app.caloriesPerMeal);
+    app.$htmlBody.animate({
+        scrollTop: app.$showCalorieResults.offset().top
+    },750)
 };
 
 app.getMaleBMR = function () {
@@ -69,6 +73,7 @@ app.getBMR = function () {
         app.BMR = app.getFemaleBMR() * app.activityLevel;
     }
     app.calculateTotalCaloriesPerDay();
+
 };
 
 app.calculateTotalCaloriesPerDay = function () {
@@ -84,6 +89,8 @@ app.cacheSelectors = function () {
     app.$getRecipes = $('#getRecipes');
     app.$listOfRecipes = $('#listOfRecipes');
     app.$showCalorieResults = $('#showCalorieResults');
+    app.$recipeSection = $('#recipeSection');
+    app.$htmlBody = $('html, body');
 };
 
 app.addEventListeners = function () {

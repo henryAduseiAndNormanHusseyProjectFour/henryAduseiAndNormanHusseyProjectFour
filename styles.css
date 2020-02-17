@@ -160,6 +160,11 @@ button:active {
 }
 
 .showCalorieResults {
+    background-color: white;
+    padding: 5% 0;
+}
+
+.showCalorieResults .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -168,11 +173,12 @@ button:active {
     transition: all .3s;
 }
 
-
-
-
 h2 {
     font-size: 3.5vmax;
+}
+
+h2, h3 {
+    margin: 3%;
 }
 
 h2 span, h3 span {
@@ -189,11 +195,35 @@ h3 {
     font-size: 3vmax;
 }
 
-h3 span {
-    
+
+
+.getRecipes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+
+.recipeSection {
+    padding: 5%;
+}
+.recipeSection label {
+    font-size: 1.5vmax;
+}
+
+.recipeSection select {
+    font-size: 1.5vmax;
+    padding: 1vmax;
+    width: 25vw;
+}
 
 .hidden {
     opacity: 0;
+    display: none;
 }
+
+li {
+    list-style-type: none;
+}
+

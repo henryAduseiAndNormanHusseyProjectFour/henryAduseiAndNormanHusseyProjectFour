@@ -80,29 +80,39 @@
         </section>
 
         <section class="showCalorieResults hidden" id="showCalorieResults">
-            <h2>Your total daily caloric requirement is <span id="totalCaloriesPerDay"></span></h2>
-
-            <h3>Your average calories per meal is: <span id="avgCaloriesPerMeal"></span></h3>
+            <div class="wrapper">
+                <h2>Your total daily caloric requirement is <span id="totalCaloriesPerDay"></span></h2>
+    
+                <h3>Your average calories per meal is: <span id="avgCaloriesPerMeal"></span></h3>
+            </div>
         </section>
-        <section id="recipeSection" class="recipeSection">
-            <form action="" id="getRecipes" class="getRecipes">
-                <select name="mealType" id="mealType">
-                    <option value="breakfast">Breakfast</option>
-                    <option value="lunch">Lunch</option>
-                    <option value="dinner">Dinner</option>
-                    <option value="snack">Snack</option>
-                </select>
-                <select name="dietType" id="dietType">
-                    <option value="balanced">Balanced</option>
-                    <option value="high-protein">High-Protein</option>
-                    <option value="high-fiber">High-Fiber</option>
-                    <option value="low-fat">Low-Fat</option>
-                    <option value="low-carb">Low-Carb</option>
-                    <option value="low-sodium">Low-Sodium</option>
-                </select>
-                <button>Get Recipes</button>
-            </form>
-            <ul id="listOfRecipes" class="listOfRecipes"></ul>
+
+        <section id="recipeSection" class="recipeSection hidden">
+            <div class="wrapper">
+                <form action="" id="getRecipes" class="getRecipes">
+                    <label for="mealType">Choose your Meal</label>
+                    <select name="mealType" id="mealType">
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="snack">Snack</option>
+                    </select>
+                    <label for="dietType">Choose your dietary preference</label>
+                    <select name="dietType" id="dietType">
+                        <option value="balanced">Balanced</option>
+                        <option value="high-protein">High-Protein</option>
+                        <option value="high-fiber">High-Fiber</option>
+                        <option value="low-fat">Low-Fat</option>
+                        <option value="low-carb">Low-Carb</option>
+                        <option value="low-sodium">Low-Sodium</option>
+                    </select>
+                    <button>Get Recipes</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="listOfRecipes">
+            <ul id="listOfRecipes"></ul>
         </section>
     </main>
 
