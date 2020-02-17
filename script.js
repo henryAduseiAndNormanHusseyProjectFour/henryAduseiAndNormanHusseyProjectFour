@@ -21,6 +21,8 @@ app.displayRecipes = function () {
     app.$listOfRecipes.empty();
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
+        console.log(recipe.digest[0].total);
+        
         const htmlToAppend = `
             <li>
                 <div class="recipeImage">
@@ -29,15 +31,16 @@ app.displayRecipes = function () {
 
                 <div class="recipeDetails">
                     <h4>${recipe.label}</h4>
-                    <p>Calories per serving: ${Math.round(
+                    <p>${recipe.dietLabels.join(", ")}</p>
+                    <p>Per serving: </p>
+                    <p>Calories: ${Math.round(
                       recipe.calories / recipe.yield
                     )}</p>
-                    <p>${recipe.dietLabels.join(", ")}</p>
-                    <p>Fat: ${recipe.digest[0].total.toFixed(2)}${
+                    <p>Fat: ${(recipe.digest[0].total / recipe.yield).toFixed(2)}${
                     recipe.digest[0].unit
-                    } Carbs: ${recipe.digest[1].total.toFixed(2)}${
+                    } Carbs: ${(recipe.digest[1].total / recipe.yield).toFixed(2)}${
                     recipe.digest[1].unit
-                    } Protein: ${recipe.digest[2].total.toFixed(2)}${
+                    } Protein: ${(recipe.digest[2].total / recipe.yield).toFixed(2)}${
                     recipe.digest[2].unit
                     }</p>
                     <p class="healthLabels">${recipe.healthLabels.join(
@@ -64,9 +67,22 @@ app.displayRecipes = function () {
     );
 };
 
+app.getExcluded = function() {
+    app.excluded = '';
+    if (app.mealType === 'breakfast') {
+        app.excluded = '&excluded=lunch&excluded=dinner&excluded=snack';
+    } else if (app.mealType === 'lunch') {
+        app.excluded = "&excluded=breakfast&excluded=dinner&excluded=snack";
+    } else if (app.mealType === 'dinner') {
+         app.excluded = "&excluded=lunch&excluded=breakfast&excluded=snack&excluded=rolls";
+    } else if (app.mealType === 'snack') {
+        app.excluded = "&excluded=lunch&excluded=dinner&excluded=breakfast";
+    }
+}
+
 app.getRecipes = function () {
     $.ajax({
-        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}&excluded=rolls&excluded=breakfast&health=alcohol-free&health=peanut-free`,
+        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free`,
         method: 'GET',
         dataType: 'json',
         // data: {
@@ -169,6 +185,7 @@ app.addEventListeners = function () {
         e.preventDefault();
         app.mealType = $('#mealType').val();
         app.dietType = $('#dietType').val();
+        app.getExcluded();
         app.getRecipes();
     });
 
