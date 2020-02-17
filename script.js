@@ -24,7 +24,7 @@ app.displayRecipes = function () {
     app.$listOfRecipes.empty();
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
-        console.log(recipe.digest[0].total);
+        // console.log(recipe.digest[0].total);
         
         const htmlToAppend = `
             <li>
@@ -85,7 +85,7 @@ app.getExcluded = function() {
 
 app.getRecipes = function () {
     $.ajax({
-        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free&diet=${app.dietType}`,
+        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free${app.restrictions}&diet=${app.dietType}`,
         method: 'GET',
         dataType: 'json',
         // data: {
@@ -101,7 +101,7 @@ app.getRecipes = function () {
         // }
 
     }).then(function (response) {
-        console.log(response.hits);
+        // console.log(response.hits);
         app.recipeResults = response.hits;
         app.displayRecipes();
     });
@@ -188,6 +188,14 @@ app.addEventListeners = function () {
         e.preventDefault();
         app.mealType = $('#mealType').val();
         app.dietType = $('#dietType').val();
+        app.restrictions = "";
+        $('input[name="restrictions"]:checked').each(function () {
+            app.restrictions += `&health=${$(this).val()}`;
+        });
+
+        console.log(app.restrictions);
+        
+        
         app.getExcluded();
         app.getRecipes();
     });
