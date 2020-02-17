@@ -83,10 +83,79 @@ header p {
     margin: 5%;
 }
 .inputForm form {
-    font-size: 1.2vmax;
+    font-size: 1.5vmax;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
 }
+
+input {
+    margin: 2% 0;
+    padding: 0.5%;
+}
+
+.genderSelect {
+    margin-bottom: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genderSelect div {
+    margin: 0 2%;
+}
+
+select {
+    margin: 2% 0;
+    padding: 1%;
+    /* background-color: var(--colourWhiteShade); */
+}
+
+fieldset {
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+legend {
+    text-align: center;
+    width: 100%;
+    margin: 2% 0;
+}
+
+.weightGoals {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+fieldset select {
+    padding: 0.5%;
+}
+
+button {
+    background-color: var(--colourPrimaryDark);
+    color: var(--colourWhiteShade);
+    font-size: 2vmax;
+    padding: 2% 4%;
+    border-radius: 12px;
+    box-shadow: 2px 2px black;
+    border: none;
+    transition: all .3s;
+}
+
+button:hover, button:focus {
+    background-color: var(--colourSecondaryDark);
+}
+
+button:active {
+    box-shadow: none;
+}
+
