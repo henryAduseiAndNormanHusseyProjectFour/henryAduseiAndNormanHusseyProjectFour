@@ -58,7 +58,7 @@ header .wrapper {
 
 h1 {
     font-family: 'Abril Fatface', cursive;
-    font-size: 9rem;
+    font-size: 9vmax;
     text-shadow: 2px 2px 2px black;
 }
 
@@ -82,7 +82,7 @@ h1 {
 }
 
 header p {
-    font-size: 2.5vmax;
+    font-size: 2.25vmax;
     text-align: center;
 }
 
@@ -274,6 +274,17 @@ li {
 
 .recipeDetails p {
     font-size: 1.25vmax;
+    line-height: 1.6;
+}
+
+.dietLabels {
+    font-weight: 700;
+}
+
+.nutrients {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .cautions {
@@ -287,8 +298,8 @@ li {
 }
 
 .recipeDetails .anchors {
-    font-size: 1.25vmax;
-    padding: 10px;
+    font-size: 1.75vmax;
+    padding: 15px 20px;
     margin: 2% 0;
     display: inline-block;
 }
@@ -336,6 +347,10 @@ li {
         width: 100%;
     }
 
+    h1 {
+        font-size: 12vmax;
+    }
+
     .anchors {
         font-size: 3vmax;
     }
@@ -379,6 +394,32 @@ li {
     .dietRestrictions legend, .getRecipes label {
         font-size: 2.5vmax;
     }
+
+    li {
+        width: 80%;
+    }
+
+    h4 {
+        font-size: 3.5vmax;
+        text-align: center;
+    }
+
+    .recipeDetails {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .recipeDetails p {
+        font-size: 2vmax;
+    }
+
+    .recipeDetails .anchors {
+        font-size: 2.5vmax;
+        padding: 20px 30px;
+        align-self: center;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -414,6 +455,10 @@ li {
     .dietRestrictions {
         flex-direction: column;
         flex-wrap: nowrap;
+    }
+
+    .recipeDetails p {
+        font-size: 2.5vmax;
     }
 }
 

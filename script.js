@@ -36,12 +36,14 @@ app.displayRecipes = function () {
 
                 <div class="recipeDetails">
                     <h4>${recipe.label}</h4>
-                    <p>${recipe.dietLabels.join(", ")}</p>
+                    <p class="dietLabels">${recipe.dietLabels.join(", ")}</p>
                     <p>Per serving: </p>
                     <p>Calories: ${Math.round(recipe.calories / recipe.yield)}</p>
-                    <p>Fat: ${(recipe.digest[0].total / recipe.yield).toFixed(2)}${recipe.digest[0].unit} 
-                    Carbs: ${(recipe.digest[1].total / recipe.yield).toFixed(2)}${recipe.digest[1].unit} 
-                    Protein: ${(recipe.digest[2].total / recipe.yield).toFixed(2)}${recipe.digest[2].unit}</p>
+                    <p class="nutrients">
+                        <span>Fat: ${(recipe.digest[0].total / recipe.yield).toFixed(0)}${recipe.digest[0].unit}</span>
+                        <span>Carbs: ${(recipe.digest[1].total / recipe.yield).toFixed(0)}${recipe.digest[1].unit} </span>
+                        <span>Protein: ${(recipe.digest[2].total / recipe.yield).toFixed(0)}${recipe.digest[2].unit}</span>
+                    </p>
                     <p class="healthLabels">${recipe.healthLabels.join(", ")}</p>
                     <p class="cautions">Cautions: ${recipe.cautions.join( ", ")}</p>
                     <a class="anchors" href="${recipe.url}" target="_blank">Click here to see recipe</a>
