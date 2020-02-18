@@ -104,6 +104,12 @@ input {
     padding: 0.5%;
 }
 
+label,
+legend {
+    font-weight: 700;
+    text-align: center;
+}
+
 .genderSelect {
     margin-bottom: 2%;
     width: 100%;
@@ -142,6 +148,10 @@ legend {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+}
+
+.weightGoals label {
+    font-weight: 400;
 }
 
 fieldset select {
@@ -216,6 +226,7 @@ h4 {
 .recipeSection {
     padding: 5%;
 }
+
 .recipeSection label {
     font-size: 1.5vmax;
 }
@@ -307,6 +318,7 @@ li {
 
 .dietRestrictions label {
     font-size: 1.5vmax;
+    font-weight: 400;
 }
 
 .dietRestrictions legend, .getRecipes label {
@@ -337,9 +349,45 @@ li {
         padding: 20px 40px;
         margin: 20px 0;
     }
+
+    h2,
+    h3 {
+        font-size: 4vmax;
+    }
+
+    h2 span,
+    h3 span {
+        font-size: 5.5vmax;
+    }
+
+    .recipeSection label {
+        font-size: 2.5vmax;
+    }
+    
+    .recipeSection select {
+        font-size: 2.5vmax;
+    }
+
+    .dietRestrictions {
+        width: 100%;
+    }
+
+    .dietRestrictions label {
+        font-size: 2.5vmax;
+    }
+    
+    .dietRestrictions legend, .getRecipes label {
+        font-size: 2.5vmax;
+    }
 }
 
 @media (max-width: 600px) {
+
+    input,
+    label,
+    select {
+        margin: 15px 0;
+    }
 
     select,
     option {
@@ -358,12 +406,26 @@ li {
     .weightPoundsPerWeek option {
         font-size: 2.5vmax;
     }
+
+    .recipeSection select {
+        width: 50vw;
+    }
+
+    .dietRestrictions {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 }
 
 @media (max-width: 425px) {
     select,
     option {
         font-size: 1.75vmax;
+    }
+
+    .getRecipes select,
+    .getRecipes option {
+        font-size: 2vmax;
     }
 }
 
