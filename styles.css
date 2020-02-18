@@ -82,19 +82,21 @@ h1 {
 }
 
 header p {
-    font-size: 1.5vmax;
+    font-size: 2.5vmax;
+    text-align: center;
 }
 
 .inputSection {
     padding: 5%;
 }
+
 .inputSection form {
     font-size: 1.5vmax;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    text-align: center;
 }
 
 input {
@@ -316,3 +318,59 @@ li {
     display: none;
 }
 
+@media (max-width: 875px) {
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .anchors {
+        font-size: 3vmax;
+    }
+
+    .inputSection form {
+        font-size: 2.5vmax;
+    }
+
+    button {
+        font-size: 3vmax;
+        padding: 20px 40px;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 600px) {
+
+    select,
+    option {
+        font-size: 2vmax;
+    }
+
+    .weightGoals {
+        flex-direction: column;
+    }
+
+    .weightGoals div {
+        margin: 2% 0;
+    }
+
+    .weightPoundsPerWeek,
+    .weightPoundsPerWeek option {
+        font-size: 2.5vmax;
+    }
+}
+
+@media (max-width: 425px) {
+    select,
+    option {
+        font-size: 1.75vmax;
+    }
+}
+
+@media (max-width: 375px) {
+    select,
+    option {
+        font-size: 1.5vmax;
+        padding: 5% 0;
+    }
+}
