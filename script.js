@@ -4,19 +4,22 @@ app.apiKey = 'f5989c4d0fce10c4ab403955d5b8f21f';
 
 app.reset = function() {
     app.$htmlBody.animate(
-{
-    scrollTop: $('#home').offset().top
-    },
-    750
-);
+        {
+            scrollTop: $('#home').offset().top
+        },
+        750
+    );
 
-setTimeout(function() {
-    app.$inputForm[0].reset();
-    app.$listOfRecipes.empty();
-    app.$displayRecipesSection.toggleClass("hidden");
-    app.$showCalorieResults.toggleClass("hidden");
-    app.$recipeSection.toggleClass("hidden");
-},750);
+    setTimeout(function() {
+        app.$inputForm[0].reset();
+        app.$listOfRecipes.empty();
+        app.$getRecipesButton.text('Get Recipes');
+        app.$getRecipesButton.attr('disabled', false);
+        app.$getRecipesButton.css('background-color', 'var(--colourPrimaryDark)');
+        app.$displayRecipesSection.toggleClass("hidden");
+        app.$showCalorieResults.toggleClass("hidden");
+        app.$recipeSection.toggleClass("hidden");
+    },750);
 }
 
 app.displayRecipes = function () {
@@ -70,6 +73,17 @@ app.displayRecipes = function () {
     );
 };
 
+app.noRecipesFound = function () {
+    app.$displayRecipesSection.toggleClass('hidden');
+    app.$listOfRecipes.empty();
+    const htmlToAppend = `
+        <li class="noResults">
+            <h4>Sorry, no results found.</h4>
+        </li>
+    `;
+    app.$listOfRecipes.append(htmlToAppend);
+};
+
 app.getExcluded = function() {
     app.excluded = '';
     if (app.mealType === 'breakfast') {
@@ -88,22 +102,14 @@ app.getRecipes = function () {
         url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free${app.restrictions}&diet=${app.dietType}`,
         method: 'GET',
         dataType: 'json',
-        // data: {
-        //     "app_id": app.apiId,
-        //     "app_key": app.apiKey,
-        //     q: app.mealType,
-        //     calories: `${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}`,
-        //     diet: app.dietType,
-        //     // excluded: 'rolls&breakfast&lunch&snack&alcohol',
-        //     health: `alcohol-free&health=peanut-free'`,
-        //     // mealType: 'lunch',
-        //     // cuisineType: 'indian'
-        // }
-
     }).then(function (response) {
         // console.log(response.hits);
         app.recipeResults = response.hits;
-        app.displayRecipes();
+        if (app.recipeResults.length > 0)  {
+            app.displayRecipes();
+        } else {
+            app.noRecipesFound();
+        }
     });
 };
 
@@ -146,6 +152,7 @@ app.cacheSelectors = function () {
     app.$totalCaloriesPerDay = $('#totalCaloriesPerDay');
     app.$avgCaloriesPerMeal = $('#avgCaloriesPerMeal');
     app.$getRecipes = $('#getRecipes');
+    app.$getRecipesButton = $('#getRecipesButton');
     app.$listOfRecipes = $('#listOfRecipes');
     app.$showCalorieResults = $('#showCalorieResults');
     app.$recipeSection = $('#recipeSection');
@@ -192,10 +199,10 @@ app.addEventListeners = function () {
         $('input[name="restrictions"]:checked').each(function () {
             app.restrictions += `&health=${$(this).val()}`;
         });
-
-        console.log(app.restrictions);
         
-        
+        app.$getRecipesButton.text('Getting Recipes...');
+        app.$getRecipesButton.attr('disabled', true);
+        app.$getRecipesButton.css('background-color', 'var(--colourSecondaryLight)');
         app.getExcluded();
         app.getRecipes();
     });

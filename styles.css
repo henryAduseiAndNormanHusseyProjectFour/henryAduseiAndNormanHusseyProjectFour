@@ -185,6 +185,7 @@ h2 {
 
 h2, h3 {
     margin: 3%;
+    text-align: center;
 }
 
 h2 span, h3 span {
@@ -192,9 +193,6 @@ h2 span, h3 span {
     color: var(--colourSecondaryDark);
     display: block;
     width: 100%;
-    text-align: center;
-   
-
 }
 
 h3 {
@@ -212,9 +210,6 @@ h4 {
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 .recipeSection {
     padding: 5%;
@@ -234,20 +229,25 @@ ul  {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
+    justify-content: center;
 }
 
 li {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-color: white;
-    width: 48%;
-    margin: 2% 0;
+    width: 46%;
+    margin: 2%;
 
 }
 
+.noResults {
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+}
 
 .recipeImage img {
     width: 100%;
@@ -280,10 +280,6 @@ li {
     display: inline-block;
 }
 
-.recipeDetailsa a:hover, .recipeDetails a:focus {
-    
-}
-
 .displayRecipesSection button {
     margin: 2% 0;
 }
@@ -295,7 +291,7 @@ li {
     align-items: center;
 }
 
-.dietaryPreferences {
+.dietRestrictions {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
@@ -303,15 +299,15 @@ li {
     width: 60%;
 }
 
-.dietaryPreferences div {
+.dietRestrictions div {
     margin: 3%;
 }
 
-.dietaryPreferences label {
+.dietRestrictions label {
     font-size: 1.5vmax;
 }
 
-.dietaryPreferences legend, .getRecipes label {
+.dietRestrictions legend, .getRecipes label {
     font-size: 1.75vmax;
 }
 

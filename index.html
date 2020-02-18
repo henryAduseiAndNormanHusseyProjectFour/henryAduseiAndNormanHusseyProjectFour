@@ -81,8 +81,7 @@
 
         <section class="showCalorieResults hidden" id="showCalorieResults">
             <div class="wrapper">
-                <h2>Your total daily caloric requirement is <span id="totalCaloriesPerDay"></span></h2>
-    
+                <h2>Your total daily caloric requirement is: <span id="totalCaloriesPerDay"></span></h2>
                 <h3>Your average calories per meal is: <span id="avgCaloriesPerMeal"></span></h3>
             </div>
         </section>
@@ -112,13 +111,13 @@
                         <legend>Choose your Dietary Restrictions</legend>
 
                         <div>
-                            <label for="dairyFree">Dairy-free</label>
-                            <input name="restrictions" type="checkbox" id="dairyFree" value="dairy-free">
+                            <label for="sugarConcious">Sugar Concious</label>
+                            <input name="restrictions" type="checkbox" id="sugarConcious" value="sugar-conscious">
                         </div>
 
                         <div>
-                            <label for="glutenFree">Gluten-free</label>
-                            <input name="restrictions" type="checkbox" id="glutenFree" value="gluten-free">
+                            <label for="treeNutFree">Tree Nut Free</label>
+                            <input name="restrictions" type="checkbox" id="treeNutFree" value="tree-nut-free">
                         </div>
 
                         <div>
@@ -135,13 +134,8 @@
                             <input name="restrictions" type="checkbox" id="vegetarian" value="vegetarian">
                         </div>
 
-                        <div>
-                            <label for="soyFree">Soy-free</label>
-                            <input name="restrictions" type="checkbox" id="soyFree" value="soy-free">
-                        </div>
-
                     </fieldset>
-                    <button>Get Recipes</button>
+                    <button id="getRecipesButton">Get Recipes</button>
                 </form>
             </div>
         </section>
