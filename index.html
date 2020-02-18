@@ -12,9 +12,8 @@
     <header id="home">
         <div class="wrapper">    
             <h1>FitBite</h1>
-            <p>Find out some cool recipes based on your daily calorie needs.</p>
-    
-           <button class="anchors" id="startJourney">start your journey</button>
+            <p>Get the recipes you need to meet your goals.</p>
+           <button class="anchors" id="startJourney">Start Your Journey</button>
         </div>
     </header>
 
@@ -25,7 +24,7 @@
                     <div class="genderSelect">
                         <div>
                             <label for="male">Male:</label>
-                            <input type="radio" name="gender" id="male" value="male">
+                            <input type="radio" name="gender" id="male" value="male" checked>
                         </div>
                         <div>
                             <label for="female">Female:</label>
@@ -34,11 +33,11 @@
                     </div>
     
                     <label for="age">Age: </label>
-                    <input type="number" name="age" id="age" min="14">
+                    <input type="number" name="age" id="age" min="14" required>
                     <label for="weight">Weight (in pounds): </label>
-                    <input type="number" name="weight" id="weight">
+                    <input type="number" name="weight" id="weight" required>
                     <label for="height">Height (in inches): </label>
-                    <input type="number" name="height" id="height">
+                    <input type="number" name="height" id="height" required>
                     <label for="activityLevel">Please choose your level of activity:</label>
                     <select name="activityLevel" id="activityLevel">
                         <option value="1.2">Sedentary (little or no exercise)</option>
@@ -50,30 +49,30 @@
                     <fieldset>
                         <legend>I am looking to...</legend>
 
-                            <div class="weightGoals">
-                                <div>
-                                    <label for="loseWeight">Lose Weight</label>
-                                    <input type="radio" name="weightGoals" id="loseWeight" value="-1">
-                                </div>
-                                <div>
-                                    <label for="maintainWeight">Maintain Weight</label>
-                                    <input type="radio" name="weightGoals" id="maintainWeight" value="0">
-                                </div>
-                                <div>
-                                    <label for="gainWeight">Gain Weight</label>
-                                    <input type="radio" name="weightGoals" id="gainWeight" value="1">
-                                </div>
+                        <div class="weightGoals">
+                            <div>
+                                <label for="loseWeight">Lose Weight</label>
+                                <input type="radio" name="weightGoals" id="loseWeight" value="-1">
                             </div>
+                            <div>
+                                <label for="maintainWeight">Maintain Weight</label>
+                                <input type="radio" name="weightGoals" id="maintainWeight" value="0" checked>
+                            </div>
+                            <div>
+                                <label for="gainWeight">Gain Weight</label>
+                                <input type="radio" name="weightGoals" id="gainWeight" value="1">
+                            </div>
+                        </div>
 
-                            <select name="weightPoundsPerWeek" id="weightPoundsPerWeek" class="weightPoundsPerWeek">
-                                <option value="250">0.5 pounds per week</option>
-                                <option value="500">1.0 pounds per week</option>
-                                <option value="750">1.5 pounds per week</option>
-                                <option value="1000">2.0 pounds per week</option>
-                            </select>
+                        <select name="weightPoundsPerWeek" id="weightPoundsPerWeek" class="weightPoundsPerWeek hidden">
+                            <option value="250">0.5 pounds per week</option>
+                            <option value="500">1.0 pounds per week</option>
+                            <option value="750">1.5 pounds per week</option>
+                            <option value="1000">2.0 pounds per week</option>
+                        </select>
                     </fieldset>
                     <label for="numberOfMealsPerDay">How many meals per day?</label>
-                    <input type="number" name="numberOfMealsPerDay" id="numberOfMealsPerDay" min="3">
+                    <input type="number" name="numberOfMealsPerDay" id="numberOfMealsPerDay" min="3" value="3" required>
                     <button>Get Calories</button>
                 </form>
             </div>

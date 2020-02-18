@@ -12,6 +12,7 @@ app.reset = function() {
 
     setTimeout(function() {
         app.$inputForm[0].reset();
+        app.$weightPoundsPerWeek.addClass('hidden');
         app.$listOfRecipes.empty();
         app.$getRecipesButton.text('Get Recipes');
         app.$getRecipesButton.attr('disabled', false);
@@ -27,8 +28,6 @@ app.displayRecipes = function () {
     app.$listOfRecipes.empty();
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
-        // console.log(recipe.digest[0].total);
-        
         const htmlToAppend = `
             <li>
                 <div class="recipeImage">
@@ -39,25 +38,13 @@ app.displayRecipes = function () {
                     <h4>${recipe.label}</h4>
                     <p>${recipe.dietLabels.join(", ")}</p>
                     <p>Per serving: </p>
-                    <p>Calories: ${Math.round(
-                      recipe.calories / recipe.yield
-                    )}</p>
-                    <p>Fat: ${(recipe.digest[0].total / recipe.yield).toFixed(2)}${
-                    recipe.digest[0].unit
-                    } Carbs: ${(recipe.digest[1].total / recipe.yield).toFixed(2)}${
-                    recipe.digest[1].unit
-                    } Protein: ${(recipe.digest[2].total / recipe.yield).toFixed(2)}${
-                    recipe.digest[2].unit
-                    }</p>
-                    <p class="healthLabels">${recipe.healthLabels.join(
-                      ", "
-                    )}</p>
-                    <p class="cautions">Cautions: ${recipe.cautions.join(
-                      ", "
-                    )}</p>
-                    <a class="anchors" href="${
-                      recipe.url
-                    }" target="_blank">Click here to see recipe</a>
+                    <p>Calories: ${Math.round(recipe.calories / recipe.yield)}</p>
+                    <p>Fat: ${(recipe.digest[0].total / recipe.yield).toFixed(2)}${recipe.digest[0].unit} 
+                    Carbs: ${(recipe.digest[1].total / recipe.yield).toFixed(2)}${recipe.digest[1].unit} 
+                    Protein: ${(recipe.digest[2].total / recipe.yield).toFixed(2)}${recipe.digest[2].unit}</p>
+                    <p class="healthLabels">${recipe.healthLabels.join(", ")}</p>
+                    <p class="cautions">Cautions: ${recipe.cautions.join( ", ")}</p>
+                    <a class="anchors" href="${recipe.url}" target="_blank">Click here to see recipe</a>
                 </div>
             </li>
 
@@ -65,7 +52,8 @@ app.displayRecipes = function () {
         app.$listOfRecipes.append(htmlToAppend);
 
     }
-        app.$htmlBody.animate(
+
+    app.$htmlBody.animate(
         {
             scrollTop: app.$displayRecipesSection.offset().top
         },
@@ -82,6 +70,12 @@ app.noRecipesFound = function () {
         </li>
     `;
     app.$listOfRecipes.append(htmlToAppend);
+    app.$htmlBody.animate(
+        {
+            scrollTop: app.$displayRecipesSection.offset().top
+        },
+        750
+    );
 };
 
 app.getExcluded = function() {
@@ -149,6 +143,9 @@ app.calculateTotalCaloriesPerDay = function () {
 
 app.cacheSelectors = function () {
     app.$inputForm =  $('#inputForm');
+    app.$weightGoalsOptions = $('input[name="weightGoals"]');
+    app.$weightGoalsChecked = $('input[name="weightGoals"]:checked');
+    app.$weightPoundsPerWeek = $('#weightPoundsPerWeek');
     app.$totalCaloriesPerDay = $('#totalCaloriesPerDay');
     app.$avgCaloriesPerMeal = $('#avgCaloriesPerMeal');
     app.$getRecipes = $('#getRecipes');
@@ -178,6 +175,14 @@ app.addEventListeners = function () {
         );
     });
 
+    app.$weightGoalsOptions.change(function () {
+        if ($(this).val() == 0) {
+            app.$weightPoundsPerWeek.addClass('hidden');
+        } else {
+            app.$weightPoundsPerWeek.removeClass('hidden');
+        }
+    });
+
    app.$inputForm.on('submit', function (e) {
         e.preventDefault();
         app.gender = $('input[name="gender"]:checked').val();
@@ -185,7 +190,7 @@ app.addEventListeners = function () {
         app.weight = parseInt(app.$weight.val());
         app.height = parseInt(app.$height.val());
         app.activityLevel = (app.$activityLevel.val());
-        app.weightGoals = $('input[name="weightGoals"]:checked').val();
+        app.weightGoals = app.$weightGoalsChecked.val();
         app.weightPoundsPerWeek = $('#weightPoundsPerWeek').val();
         app.numberOfMealsPerDay = parseInt($('#numberOfMealsPerDay').val());
         app.getBMR();
