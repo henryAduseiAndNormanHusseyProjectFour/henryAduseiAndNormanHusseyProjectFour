@@ -104,13 +104,46 @@ input {
     padding: 0.5%;
 }
 
+.radioLabel {
+    position: relative;
+}
+
+.radioLabel:focus {
+    outline: 2px solid var(--colourSecondaryLight);
+}
+
+.radioButtonStyle {
+    position: absolute;
+    right: -25px;
+    top: 3px;
+    width: 1.5vmax;
+    height: 1.5vmax;
+    border-radius: 50%;
+    background-color: white;
+    display: block;
+}
+
+input[type='radio'] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+input[type='radio']:checked + .radioLabel .radioButtonStyle {
+    background-color: var(--colourSecondaryDark);
+}
+
+input[type='radio']:focus + .radioLabel {
+       color: var(--colourSecondaryLight);
+}
+
 label,
 legend {
     font-weight: 700;
     text-align: center;
 }
 
-.genderSelect {
+.genderSelect, .measurementChoice {
     margin-bottom: 2%;
     width: 100%;
     display: flex;
@@ -118,7 +151,7 @@ legend {
     align-items: center;
 }
 
-.genderSelect div {
+.genderSelect div, .measurementChoice div  {
     margin: 0 2%;
 }
 
@@ -340,6 +373,30 @@ li {
     opacity: 0;
     display: none;
 }
+
+footer {
+    background-color: var(--colourPrimaryDark);
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer p {
+    text-align: center;
+    font-size: 1.5vmax;
+    color: white;
+    margin: 0;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover, footer a:focus {
+    color: var(--colourSecondaryDark);
+}
+
+/* Media Queries */
 
 @media (max-width: 875px) {
 

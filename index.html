@@ -21,23 +21,35 @@
         <section class="inputSection">
             <div class="wrapper">
                 <form action="" id="inputForm">
+                    
+                    
                     <div class="genderSelect">
                         <div>
-                            <label for="male">Male:</label>
                             <input type="radio" name="gender" id="male" value="male" checked>
+                            <label class="radioLabel" for="male">Male:<span class="radioButtonStyle"></span></label>
                         </div>
                         <div>
-                            <label for="female">Female:</label>
                             <input type="radio" name="gender" id="female" value="female">
+                            <label class="radioLabel" for="female">Female:<span class="radioButtonStyle"></span></label>
                         </div>
                     </div>
-    
+                    
                     <label for="age">Age: </label>
                     <input type="number" name="age" id="age" min="14" required>
+                        <div class="measurementChoice">
+                            <div class="imperialUnits">
+                                <label for="measurement">imperial</label>
+                                <input type="radio" name="measurement" id="imperial" value="imperial">
+                            </div>
+                            <div class="metricUnits">
+                                <label for="measurement">Metric</label>
+                                <input type="radio" name="measurement" id="metric" value="metric">
+                            </div>
+                        </div>
                     <label for="weight">Weight (in pounds): </label>
-                    <input type="number" name="weight" id="weight" required>
+                    <input type="number" name="weight" id="weight" min='0' required>
                     <label for="height">Height (in inches): </label>
-                    <input type="number" name="height" id="height" required>
+                    <input type="number" name="height" id="height" min='0'required>
                     <label for="activityLevel">Please choose your level of activity:</label>
                     <select name="activityLevel" id="activityLevel">
                         <option value="1.2">Sedentary (little or no exercise)</option>
@@ -148,6 +160,7 @@
     </main>
 
     <footer>
+        <p>Powered by <a href="https://www.edamam.com/" target="_blank">EDAMAM API</a></p>
     </footer>
 
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
