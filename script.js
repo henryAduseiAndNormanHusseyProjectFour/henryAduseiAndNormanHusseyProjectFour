@@ -1,6 +1,7 @@
 const app = {};
 app.apiId = '9267f4f5';
 app.apiKey = 'f5989c4d0fce10c4ab403955d5b8f21f';
+app.fromPoint = 0;
 
 app.reset = function() {
     app.$htmlBody.animate(
@@ -20,12 +21,16 @@ app.reset = function() {
         app.$displayRecipesSection.toggleClass("hidden");
         app.$showCalorieResults.toggleClass("hidden");
         app.$recipeSection.toggleClass("hidden");
+        app.$moreRecipes.removeClass('hidden');
+        app.$moreRecipes.text('Show More Recipes');
+        app.$moreRecipes.attr('disabled', false);
+        app.fromPoint = 0;
     },750);
 }
 
 app.displayRecipes = function () {
-    app.$displayRecipesSection.toggleClass('hidden');
-    app.$listOfRecipes.empty();
+    app.$moreRecipes.text('Show More Recipes');
+    app.$moreRecipes.attr('disabled', false);
     for (let i = 0; i < app.recipeResults.length; i++) {
         const recipe = app.recipeResults[i].recipe;
         const htmlToAppend = `
@@ -55,29 +60,37 @@ app.displayRecipes = function () {
 
     }
 
-    app.$htmlBody.animate(
-        {
-            scrollTop: app.$displayRecipesSection.offset().top
-        },
-        750
-    );
+    if (app.fromPoint === 0) {
+        app.$htmlBody.animate(
+            {
+                scrollTop: app.$displayRecipesSection.offset().top
+            },
+            750
+        );
+    }
 };
 
 app.noRecipesFound = function () {
-    app.$displayRecipesSection.toggleClass('hidden');
-    app.$listOfRecipes.empty();
+    let noResults;
+    if (app.fromPoint > 0) {
+        noResults = `Sorry, no more recipes found.`;
+    } else {
+        noResults = 'Sorry, no recipes found.';
+    }
     const htmlToAppend = `
         <li class="noResults">
-            <h4>Sorry, no results found.</h4>
+            <h4>${noResults}</h4>
         </li>
     `;
     app.$listOfRecipes.append(htmlToAppend);
-    app.$htmlBody.animate(
-        {
-            scrollTop: app.$displayRecipesSection.offset().top
-        },
-        750
-    );
+    if (app.fromPoint === 0) {
+        app.$htmlBody.animate(
+            {
+                scrollTop: app.$displayRecipesSection.offset().top
+            },
+            750
+        );
+    }
 };
 
 app.getExcluded = function() {
@@ -95,15 +108,26 @@ app.getExcluded = function() {
 
 app.getRecipes = function () {
     $.ajax({
-        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free${app.restrictions}&diet=${app.dietType}`,
+        url: `https://api.edamam.com/search?app_id=${app.apiId}&app_key=${app.apiKey}&from=${app.fromPoint}&q=${app.mealType}&calories=${app.caloriesPerMeal - 25}-${app.caloriesPerMeal + 25}${app.excluded}&health=alcohol-free${app.restrictions}&diet=${app.dietType}`,
         method: 'GET',
         dataType: 'json',
     }).then(function (response) {
-        console.log(response);
+        app.isThereMoreResults = response.more;
+        if (!app.isThereMoreResults) {
+            app.$moreRecipes.addClass('hidden');
+        }
         app.recipeResults = response.hits;
         if (app.recipeResults.length > 0)  {
+            if (app.fromPoint === 0) {
+                app.$displayRecipesSection.toggleClass('hidden');
+                app.$listOfRecipes.empty();
+            }
             app.displayRecipes();
         } else {
+            if (app.fromPoint === 0) {
+                app.$displayRecipesSection.toggleClass('hidden');
+                app.$listOfRecipes.empty();
+            }
             app.noRecipesFound();
         }
     });
@@ -173,6 +197,7 @@ app.cacheSelectors = function () {
     app.$activityLevel = $('#activityLevel');
     app.$startJourney = $('#startJourney');
     app.$inputSection = $('.inputSection');
+    app.$moreRecipes = $('#moreRecipes');
 };
 
 app.addEventListeners = function () {
@@ -231,6 +256,15 @@ app.addEventListeners = function () {
         app.$getRecipesButton.css('background-color', 'var(--colourSecondaryLight)');
         app.getExcluded();
         app.getRecipes();
+    });
+
+    app.$moreRecipes.on('click', function () {
+        if (app.isThereMoreResults) {
+            app.$moreRecipes.text('Getting More Recipes...');
+            app.$moreRecipes.attr('disabled', true);
+            app.fromPoint += 10;
+            app.getRecipes();
+        }
     });
 
     app.$startAgain.on('click', function () {
