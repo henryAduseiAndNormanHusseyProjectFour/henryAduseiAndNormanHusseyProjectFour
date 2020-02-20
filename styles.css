@@ -201,7 +201,7 @@ fieldset select {
 }
 
 button {
-    background-color: var(--colourPrimaryDark);
+    background-color: var(--colourSecondaryDark);
     color: var(--colourWhiteShade);
     font-size: 2vmax;
     padding: 2% 4%;
@@ -212,7 +212,7 @@ button {
 }
 
 button:hover, button:focus {
-    background-color: var(--colourSecondaryDark);
+    background-color: var(--colourPrimaryDark);
 }
 
 button:active {

@@ -99,6 +99,7 @@ app.getRecipes = function () {
         method: 'GET',
         dataType: 'json',
     }).then(function (response) {
+        console.log(response);
         app.recipeResults = response.hits;
         if (app.recipeResults.length > 0)  {
             app.displayRecipes();
