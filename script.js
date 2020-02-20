@@ -172,7 +172,6 @@ app.cacheSelectors = function () {
     app.$activityLevel = $('#activityLevel');
     app.$startJourney = $('#startJourney');
     app.$inputSection = $('.inputSection');
-
 };
 
 app.addEventListeners = function () {
@@ -244,6 +243,7 @@ app.addEventListeners = function () {
 app.init = function () {
     app.cacheSelectors();
     app.addEventListeners();
+    app.$inputForm[0].reset();
 }
 
 $(function () {
