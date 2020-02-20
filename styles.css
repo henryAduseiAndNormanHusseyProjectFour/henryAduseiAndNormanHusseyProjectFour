@@ -104,26 +104,25 @@ input {
     padding: 0.5%;
 }
 
-.radioLabel {
+.radioButtonStyle,
+.checkboxStyle {
     position: relative;
-}
-
-.radioLabel:focus {
-    outline: 2px solid var(--colourSecondaryLight);
-}
-
-.radioButtonStyle {
-    position: absolute;
-    right: -25px;
-    top: 3px;
+    right: 0;
+    top: 10%;
     width: 1.5vmax;
     height: 1.5vmax;
     border-radius: 50%;
+    border: 2px solid black;
     background-color: white;
-    display: block;
+    display: inline-block;
 }
 
-input[type='radio'] {
+.checkboxStyle {
+    border-radius: 4px;
+}
+
+input[type='radio'],
+input[type="checkbox"] {
     opacity: 0;
     width: 0;
     height: 0;
@@ -134,8 +133,17 @@ input[type='radio']:checked + .radioLabel .radioButtonStyle {
 }
 
 input[type='radio']:focus + .radioLabel {
-       color: var(--colourSecondaryLight);
+    color: var(--colourSecondaryLight);
 }
+
+input[type='checkbox']:checked + .checkboxLabel .checkboxStyle {
+    background-color: var(--colourSecondaryDark);
+}
+
+input[type='checkbox']:focus + .checkboxLabel {
+    color: var(--colourSecondaryLight);
+}
+
 
 label,
 legend {
@@ -143,7 +151,8 @@ legend {
     text-align: center;
 }
 
-.genderSelect, .measurementChoice {
+.genderSelect, 
+.measurementChoice {
     margin-bottom: 2%;
     width: 100%;
     display: flex;
@@ -151,14 +160,14 @@ legend {
     align-items: center;
 }
 
-.genderSelect div, .measurementChoice div  {
+.genderSelect div, 
+.measurementChoice div  {
     margin: 0 2%;
 }
 
 select {
     margin: 2% 0;
     padding: 1%;
-    /* background-color: var(--colourWhiteShade); */
 }
 
 fieldset {
@@ -432,6 +441,12 @@ footer a:hover, footer a:focus {
         font-size: 5.5vmax;
     }
 
+    .radioButtonStyle,
+    .checkboxStyle {
+        width: 2vmax;
+        height: 2vmax;
+    }
+
     .recipeSection label {
         font-size: 2.5vmax;
     }
@@ -523,18 +538,11 @@ footer a:hover, footer a:focus {
     select,
     option {
         font-size: 1.75vmax;
+        padding: 5% 0;
     }
 
     .getRecipes select,
     .getRecipes option {
         font-size: 2vmax;
-    }
-}
-
-@media (max-width: 375px) {
-    select,
-    option {
-        font-size: 1.5vmax;
-        padding: 5% 0;
     }
 }

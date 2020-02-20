@@ -22,30 +22,31 @@
             <div class="wrapper">
                 <form action="" id="inputForm">
                     
-                    
                     <div class="genderSelect">
                         <div>
                             <input type="radio" name="gender" id="male" value="male" checked>
-                            <label class="radioLabel" for="male">Male:<span class="radioButtonStyle"></span></label>
+                            <label class="radioLabel" for="male">Male: <span class="radioButtonStyle"></span></label>
                         </div>
                         <div>
                             <input type="radio" name="gender" id="female" value="female">
-                            <label class="radioLabel" for="female">Female:<span class="radioButtonStyle"></span></label>
+                            <label class="radioLabel" for="female">Female: <span class="radioButtonStyle"></span></label>
                         </div>
                     </div>
                     
                     <label for="age">Age: </label>
                     <input type="number" name="age" id="age" min="14" required>
-                        <div class="measurementChoice">
-                            <div class="imperialUnits">
-                                <label for="measurement">imperial</label>
-                                <input type="radio" name="measurement" id="imperial" value="imperial">
-                            </div>
-                            <div class="metricUnits">
-                                <label for="measurement">Metric</label>
-                                <input type="radio" name="measurement" id="metric" value="metric">
-                            </div>
+
+                    <div class="measurementChoice">
+                        <div class="imperialUnits">
+                            <input type="radio" name="measurement" id="imperial" value="imperial" checked>
+                            <label for="imperial" class="radioLabel">Imperial <span class="radioButtonStyle"></span></label>
                         </div>
+                        <div class="metricUnits">
+                            <input type="radio" name="measurement" id="metric" value="metric">
+                            <label for="metric" class="radioLabel">Metric <span class="radioButtonStyle"></span></label>
+                        </div>
+                    </div>
+
                     <label for="weight">Weight (in pounds): </label>
                     <input type="number" name="weight" id="weight" min='0' required>
                     <label for="height">Height (in inches): </label>
@@ -63,16 +64,16 @@
 
                         <div class="weightGoals">
                             <div>
-                                <label for="loseWeight">Lose Weight</label>
                                 <input type="radio" name="weightGoals" id="loseWeight" value="-1">
+                                <label for="loseWeight" class="radioLabel">Lose Weight <span class="radioButtonStyle"></span></label>
                             </div>
                             <div>
-                                <label for="maintainWeight">Maintain Weight</label>
                                 <input type="radio" name="weightGoals" id="maintainWeight" value="0" checked>
+                                <label for="maintainWeight" class="radioLabel">Maintain Weight <span class="radioButtonStyle"></span></label>
                             </div>
                             <div>
-                                <label for="gainWeight">Gain Weight</label>
                                 <input type="radio" name="weightGoals" id="gainWeight" value="1">
+                                <label for="gainWeight" class="radioLabel">Gain Weight <span class="radioButtonStyle"></span></label>
                             </div>
                         </div>
 
@@ -122,27 +123,27 @@
                         <legend>Choose your Dietary Restrictions</legend>
 
                         <div>
-                            <label for="sugarConcious">Sugar Concious</label>
                             <input name="restrictions" type="checkbox" id="sugarConcious" value="sugar-conscious">
+                            <label for="sugarConcious" class="checkboxLabel">Sugar Concious <span class="checkboxStyle"></span></label>
                         </div>
 
                         <div>
-                            <label for="treeNutFree">Tree Nut Free</label>
                             <input name="restrictions" type="checkbox" id="treeNutFree" value="tree-nut-free">
+                            <label for="treeNutFree" class="checkboxLabel">Tree Nut Free <span class="checkboxStyle"></span></label>
                         </div>
 
                         <div>
-                            <label for="peanutFree">Peanut-free</label>
                             <input name="restrictions" type="checkbox" id="peanutFree" value="peanut-free">
+                            <label for="peanutFree" class="checkboxLabel">Peanut-free <span class="checkboxStyle"></span></label>
                         </div>
 
                         <div>
-                            <label for="vegan">Vegan</label>
                             <input name="restrictions" type="checkbox" id="vegan" value="vegan">
+                            <label for="vegan" class="checkboxLabel">Vegan <span class="checkboxStyle"></span></label>
                         </div>
                         <div>
-                            <label for="vegetarian">Vegetarian</label>
                             <input name="restrictions" type="checkbox" id="vegetarian" value="vegetarian">
+                            <label for="vegetarian" class="checkboxLabel">Vegetarian <span class="checkboxStyle"></span></label>
                         </div>
 
                     </fieldset>
