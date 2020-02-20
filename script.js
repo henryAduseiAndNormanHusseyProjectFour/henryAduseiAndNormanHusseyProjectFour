@@ -270,16 +270,13 @@ app.addEventListeners = function () {
     app.$startAgain.on('click', function () {
         app.reset();
     });
-
-
-
 };
 
 app.init = function () {
     app.cacheSelectors();
     app.addEventListeners();
     app.$inputForm[0].reset();
-}
+};
 
 $(function () {
     app.init();

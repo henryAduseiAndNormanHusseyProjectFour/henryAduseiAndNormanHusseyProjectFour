@@ -257,7 +257,6 @@ h4 {
     font-size: 2.5vmax;
 }
 
-
 .getRecipes {
     display: flex;
     flex-direction: column;
@@ -278,7 +277,6 @@ h4 {
     padding: 1vmax;
     width: 25vw;
 }
-
 
 ul  {
     padding: 0;
@@ -390,6 +388,7 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
 footer p {
     text-align: center;
     font-size: 1.5vmax;
