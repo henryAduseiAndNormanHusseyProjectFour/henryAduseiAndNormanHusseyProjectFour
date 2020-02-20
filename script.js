@@ -99,7 +99,6 @@ app.getRecipes = function () {
         method: 'GET',
         dataType: 'json',
     }).then(function (response) {
-        // console.log(response.hits);
         app.recipeResults = response.hits;
         if (app.recipeResults.length > 0)  {
             app.displayRecipes();
@@ -120,11 +119,19 @@ app.showCalorieResults = function () {
 };
 
 app.getMaleBMR = function () {
-    return Math.round((6.23 * app.weight) + (12.7 * app.height) + app.age * 6.8);
+    if (app.measurementChoice === 'imperial') {
+        return Math.round((6.23 * app.weight) + (12.7 * app.height) + app.age * 6.8);
+    } else {
+        return Math.round((13.7 * app.weight) + (5 * app.height) + app.age * 6.8);
+    }
 };
 
 app.getFemaleBMR = function () {
-    return Math.round((4.35 * app.weight) + (4.7 * app.height) + app.age * 4.7);  
+    if (app.measurementChoice === 'imperial') {
+        return Math.round((4.35 * app.weight) + (4.7 * app.height) + app.age * 4.7);  
+    } else {
+        return Math.round((9.6 * app.weight) + (1.8 * app.height) + app.age * 4.7);  
+    }
 };
 
 app.getBMR = function () {
@@ -146,6 +153,7 @@ app.calculateTotalCaloriesPerDay = function () {
 app.cacheSelectors = function () {
     app.$inputForm =  $('#inputForm');
     app.$weightGoalsOptions = $('input[name="weightGoals"]');
+    app.$measurementOptions = $('input[name="measurement"]');
     app.$weightGoalsChecked = $('input[name="weightGoals"]:checked');
     app.$weightPoundsPerWeek = $('#weightPoundsPerWeek');
     app.$totalCaloriesPerDay = $('#totalCaloriesPerDay');
@@ -185,10 +193,21 @@ app.addEventListeners = function () {
         }
     });
 
+    app.$measurementOptions.change(function () {
+        if ($(this).val() == 'imperial') {
+            $('#weightMeasurement').text('pounds');
+            $('#heightMeasurement').text('inches');
+        } else {
+            $('#weightMeasurement').text('kg');
+            $('#heightMeasurement').text('cm');
+        }
+    });
+
    app.$inputForm.on('submit', function (e) {
         e.preventDefault();
         app.gender = $('input[name="gender"]:checked').val();
         app.age = parseInt(app.$age.val());
+        app.measurementChoice = $('input[name="measurement"]:checked').val();
         app.weight = parseInt(app.$weight.val());
         app.height = parseInt(app.$height.val());
         app.activityLevel = (app.$activityLevel.val());
